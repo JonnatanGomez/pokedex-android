@@ -7,8 +7,5 @@ import javax.inject.Inject
 class GetPokemonListUseCase @Inject constructor(
     private val repository: PokemonRepository
 ) {
-    // Hace que la clase se pueda invocar como una función
-    suspend operator fun invoke(): List<PokemonResult> {
-        return repository.getPokemonList()
-    }
+    // TODO:Posible implementacion futura de obtencion de toda la lista de pokemos
 }

@@ -9,13 +9,15 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.hilt.navigation.compose.hiltViewModel
-import com.example.pokeapi.presentation.component.CustomTopAppBar
+import androidx.navigation.NavController
+import com.example.pokeapi.presentation.component.DetailTopAppBar
 import com.example.pokeapi.presentation.component.PokemonDetailContent
 import com.example.pokeapi.presentation.viewmodel.PokemonDetailViewModel
 
 @Composable
 fun PokemonDetailScreen(
     idOrName: String,
+    navController: NavController,
     viewModel: PokemonDetailViewModel = hiltViewModel()
 ) {
     LaunchedEffect(idOrName) {
@@ -25,7 +27,12 @@ fun PokemonDetailScreen(
     val uiState = viewModel.uiState
 
     Scaffold(
-        topBar = { CustomTopAppBar() }
+        topBar = { DetailTopAppBar(
+            pokemonName = idOrName.ifEmpty { "Detalle" },
+            onBackClick = {
+                navController.popBackStack()
+            }
+        ) }
     ) { paddingValues ->
         Box(
             modifier = Modifier
@@ -36,16 +43,17 @@ fun PokemonDetailScreen(
                 uiState.isLoading -> {
                     CircularProgressIndicator(modifier = Modifier.align(Alignment.Center))
                 }
-                uiState.detail != null -> {
-                    PokemonDetailContent(detail = uiState.detail)
+                uiState.error != null -> {
+                    Text(
+                        text = uiState.error ?: "Error desconocido",
+                        color = MaterialTheme.colors.error,
+                        modifier = Modifier.align(Alignment.Center)
+                    )
                 }
                 else -> {
-                    // Si no hay detalle y no se está cargando, mostramos un error.
-                    Text(
-                        text = uiState.error ?: "No se pudo cargar el detalle",
-                        modifier = Modifier.align(Alignment.Center),
-                        color = MaterialTheme.colors.error
-                    )
+                    uiState.detail?.let { detail ->
+                        PokemonDetailContent(detail = detail, description = uiState.description ?: "")
+                    }
                 }
             }
         }

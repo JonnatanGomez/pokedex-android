@@ -28,8 +28,14 @@ data class PokemonDetailResponse(
     val weight: Int,
     val height: Int,
     val stats: List<Stat>,
+    val types: List<Types>,
     val sprites: Sprites,
     val species: NamedAPIResource
+)
+data class Types(
+    @SerializedName("slot")
+    val slot: Int,
+    val type: NamedAPIResource
 )
 
 data class Stat(
@@ -45,10 +51,11 @@ data class Sprites(
 
 data class OtherSprites(
     @SerializedName("official-artwork")
-    val officialArtwork: OfficialArtwork
+    val officialArtwork: ArtSprites,
+    val home: ArtSprites
 )
 
-data class OfficialArtwork(
+data class ArtSprites(
     @SerializedName("front_default")
     val frontDefault: String?
 )
@@ -56,4 +63,18 @@ data class OfficialArtwork(
 data class NamedAPIResource(
     val name: String,
     val url: String
+)
+
+
+//Especies
+data class PokemonSpeciesDetailResponse(
+    @SerializedName("flavor_text_entries")
+    val flavorTextEntries: List<FlavorTextEntry>
+)
+
+data class FlavorTextEntry(
+    @SerializedName("flavor_text")
+    val flavorText: String,
+    val language: NamedAPIResource,
+    val version: NamedAPIResource
 )

@@ -17,7 +17,6 @@ import androidx.compose.ui.unit.sp
 import coil.compose.AsyncImage
 import com.example.data.remote.models.PokemonSpecies
 import com.example.pokeapi.ui.theme.subTitleBold
-import com.example.pokeapi.ui.theme.titleRegular
 
 @Composable
 fun PokemonGridItem(pokemon: PokemonSpecies, onClick: () -> Unit) {

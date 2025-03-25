@@ -4,7 +4,6 @@ import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.darkColors
 import androidx.compose.material.lightColors
-import androidx.compose.material.Shapes
 import androidx.compose.material.Typography
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
@@ -15,7 +14,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.example.pokeapi.R
 
-// Define paleta de colores para modo claro y oscuro
 private val DarkColorPalette = darkColors(
     primary = Color(0xFF1C1B1F),
     primaryVariant = Color(0xFF1C1B1F),
@@ -26,7 +24,6 @@ private val LightColorPalette = lightColors(
     primary = Color(0xFFFFFBFE),
     primaryVariant = Color(0xFFFFFBFE),
     secondary = Color.White
-    // Puedes definir otros colores si es necesario
 )
 
 // Define la familia de fuentes Montserrat
@@ -65,6 +62,14 @@ val Typography.subTitleBold: TextStyle
         fontFamily = Montserrat,
         fontWeight = FontWeight.Bold,
         fontSize = 20.sp,
+        color = Color(0xFF01426A)
+    )
+
+val Typography.textRecular: TextStyle
+    get() = TextStyle(
+        fontFamily = Montserrat,
+        fontWeight = FontWeight.Normal,
+        fontSize = 12.sp,
         color = Color(0xFF01426A)
     )
 

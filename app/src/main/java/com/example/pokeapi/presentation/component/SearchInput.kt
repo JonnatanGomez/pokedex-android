@@ -37,7 +37,7 @@ fun SearchInput(
             .fillMaxWidth()
             .height(inputHeight)
             .border(1.dp, Color(0xFFAAAAAA), shape)
-            .padding(horizontal = 16.dp), // Padding interno para separar el contenido del borde
+            .padding(horizontal = 16.dp),
         contentAlignment = Alignment.CenterStart
     ) {
         Row(
